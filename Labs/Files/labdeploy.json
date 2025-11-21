@@ -3,8 +3,8 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "username": {
-            "type": "string",
             "defaultValue": "ascadmin",
+            "type": "string",
             "metadata": {
                 "description": "Provide administrative user account for resources"
             }
@@ -13,10 +13,29 @@
             "type": "securestring",
             "metadata": {
                 "description": "Provide password for resources"
-            }
+            },
+            "minLength": 12,
+            "maxLength": 72
+        },
+        "vmSize": {
+            "defaultValue": "Standard_D2s_v5",
+            "allowedValues": [
+                "Standard_B1ms",
+                "Standard_B2ls_v2",
+                "Standard_D2s_v3",
+                "Standard_D4s_v3",
+                "Standard_D2s_v4",
+                "Standard_D4s_v4",
+                "Standard_D2s_v5",
+                "Standard_D4s_v5",
+                "Standard_D2ls_v6",
+                "Standard_D2s_v6",
+                "Standard_D4ls_v6",
+                "Standard_D4s_v6"
+            ],
+            "type": "string"
         },
         "storageAccountType": {
-            "type": "string",
             "defaultValue": "Standard_LRS",
             "allowedValues": [
                 "Standard_LRS",
@@ -24,40 +43,36 @@
                 "Standard_GRS",
                 "Standard_RAGRS",
                 "Premium_LRS"
-            ]
+            ],
+            "type": "string"
         },
         "resourceTags": {
-            "type": "object",
             "defaultValue": {
                 "Demo": "ASC",
                 "ProvisionedBy": "CxE"
-            }
+            },
+            "type": "object"
         }
     },
     "variables": {
-        "workspaceName": "[toLower(concat('asclab-la-',uniqueString(subscription().subscriptionId)))]",
+        "workspaceName": "[toLower(concat(resourceGroup().name, '-la-',uniqueString(subscription().subscriptionId)))]",
         "workspaceSKU": "PerGB2018",
-        "vmNameWindows": "asclab-win",
-        "vmNameLinux": "asclab-linux",
-        "vmSize": "Standard_B1ms",
-        "availabilitySetName": "asclab-as",
-        "vNetName": "asclab-vnet",
+        "vmNameWindows": "[concat(resourceGroup().name, '-win')]",
+        "vmNameLinux": "[concat(resourceGroup().name, '-linux')]",
+        "vmSize": "[parameters('vmSize')]",
+        "vNetName": "[concat(resourceGroup().name, '-vnet')]",
         "vNetAddressPrefix": "192.168.0.0/16",
         "subnetName": "default",
         "subnetAddressPrefix": "192.168.0.0/24",
         "vNetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('vNetName'))]",
         "subnetRef": "[concat(variables('vNetId'),'/subnets/', variables('subnetName'))]",
-        "nsgName": "asclab-nsg",
+        "nsgName": "[concat(resourceGroup().name, '-nsg')]",
         "windowsOffer": "WindowsServer",
-        "windowsSku": "2016-Datacenter",
+        "windowsSku": "2025-datacenter-azure-edition",
         "windowsPublisher": "MicrosoftWindowsServer",
-        "linuxOffer": "UbuntuServer",
-        "linuxSku": "18.04-LTS",
-        "linuxPublisher": "Canonical",
-        "windowsMgmtType": "MicrosoftMonitoringAgent",
-        "windowsMgmtVersion": "1.0",
-        "linuxMgmtType": "OmsAgentForLinux",
-        "linuxMgmtVersion": "1.4",
+        "linuxOffer": "ubuntu-24_04-lts",
+        "linuxSku": "server",
+        "linuxPublisher": "canonical",
         "workspaceSolutions": {
             "Security": {
                 "name": "SecurityCenterFree",
@@ -65,25 +80,25 @@
                 "publisher": "Microsoft"
             }
         },
-        "storageName": "[toLower(concat('asclabsa', uniqueString(subscription().subscriptionId)))]",
-        "appServicePlanName": "asclab-splan",
-        "appServiceName": "[toLower(concat('asclab-app-', uniqueString(subscription().subscriptionId)))]",
-        "kvName": "[toLower(concat('asclab-kv-',uniqueString(subscription().subscriptionId)))]",
-        "functionName": "[toLower(concat('asclab-fa-',uniqueString(subscription().subscriptionId)))]",
-        "containerRegistryName": "[toLower(concat('asclabcr', uniqueString(subscription().subscriptionId)))]",
-        "sqlServerName": "[toLower(concat('asclab-sql-',uniqueString(subscription().subscriptionId)))]",
-        "sqlDatabaseName": "asclab-db",
-        "aksClusterName": "asclab-aks",
-        "aksVersion": "1.31.1",
-        "aksDNSPrefix": "asclab-aks",
+        "storageName": "[toLower(concat(resourceGroup().name, 'sa', uniqueString(subscription().subscriptionId)))]",
+        "appServicePlanName": "[concat(resourceGroup().name, '-splan')]",
+        "appServiceName": "[toLower(concat(resourceGroup().name, '-app-', uniqueString(subscription().subscriptionId)))]",
+        "kvName": "[substring(toLower(concat(resourceGroup().name, '-kv-',uniqueString(subscription().subscriptionId))), 0, 24)]",
+        "functionName": "[toLower(concat(resourceGroup().name, '-fa-',uniqueString(subscription().subscriptionId)))]",
+        "containerRegistryName": "[toLower(concat(resourceGroup().name, 'cr', uniqueString(subscription().subscriptionId)))]",
+        "sqlServerName": "[toLower(concat(resourceGroup().name, '-sql-',uniqueString(subscription().subscriptionId)))]",
+        "sqlDatabaseName": "[concat(resourceGroup().name, '-db')]",
+        "aksClusterName": "[concat(resourceGroup().name, '-aks')]",
+        "aksVersion": "1.32.9",
+        "aksDNSPrefix": "[concat(resourceGroup().name, '-aks')]",
         "aksNetworkPlugin": "kubenet"
     },
     "resources": [
         {
-            "apiVersion": "2015-11-01-preview",
-            "location": "[resourceGroup().location]",
-            "name": "[variables('workspaceName')]",
             "type": "Microsoft.OperationalInsights/workspaces",
+            "apiVersion": "2015-11-01-preview",
+            "name": "[variables('workspaceName')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "sku": {
                     "name": "[variables('workspaceSKU')]"
@@ -91,8 +106,8 @@
             },
             "resources": [
                 {
-                    "apiVersion": "2015-11-01-preview",
                     "type": "dataSources",
+                    "apiVersion": "2015-11-01-preview",
                     "name": "System",
                     "dependsOn": [
                         "[variables('workspaceName')]"
@@ -111,8 +126,8 @@
                     }
                 },
                 {
-                    "apiVersion": "2015-11-01-preview",
                     "type": "dataSources",
+                    "apiVersion": "2015-11-01-preview",
                     "name": "Application",
                     "dependsOn": [
                         "[variables('workspaceName')]"
@@ -131,8 +146,8 @@
                     }
                 },
                 {
+                    "type": "dataSources",
                     "apiVersion": "2015-11-01-preview",
-                    "type": "datasources",
                     "name": "Syslog",
                     "dependsOn": [
                         "[variables('workspaceName')]"
@@ -160,8 +175,8 @@
                     }
                 },
                 {
-                    "apiVersion": "2015-11-01-preview",
                     "type": "dataSources",
+                    "apiVersion": "2015-11-01-preview",
                     "name": "SyslogCollection",
                     "dependsOn": [
                         "[variables('workspaceName')]"
@@ -175,7 +190,7 @@
         },
         {
             "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2017-03-01",
+            "apiVersion": "2020-05-01",
             "name": "[variables('nsgName')]",
             "location": "[resourceGroup().location]",
             "tags": "[parameters('resourceTags')]",
@@ -213,34 +228,46 @@
             }
         },
         {
-            "apiVersion": "2018-08-01",
             "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2023-06-01",
             "name": "[concat(variables('vmNameWindows'), '-pip')]",
             "location": "[resourceGroup().location]",
             "tags": "[parameters('resourceTags')]",
+            "sku": {
+                "name": "Standard"
+            },
+            "zones": [
+                "1"
+            ],
             "properties": {
-                "publicIPAllocationMethod": "Dynamic",
+                "publicIPAllocationMethod": "Static",
                 "dnsSettings": {
                     "domainNameLabel": "[toLower(concat(variables('vmNameWindows'), uniqueString(subscription().subscriptionId)))]"
                 }
             }
         },
         {
-            "apiVersion": "2018-08-01",
             "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2023-06-01",
             "name": "[concat(variables('vmNameLinux'), '-pip')]",
             "location": "[resourceGroup().location]",
             "tags": "[parameters('resourceTags')]",
+            "sku": {
+                "name": "Standard"
+            },
+            "zones": [
+                "1"
+            ],
             "properties": {
-                "publicIPAllocationMethod": "Dynamic",
+                "publicIPAllocationMethod": "Static",
                 "dnsSettings": {
                     "domainNameLabel": "[toLower(concat(variables('vmNameLinux'), uniqueString(subscription().subscriptionId)))]"
                 }
             }
         },
         {
-            "apiVersion": "2018-08-01",
             "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2024-01-01",
             "name": "[variables('vNetName')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
@@ -267,8 +294,8 @@
             }
         },
         {
-            "apiVersion": "2018-04-01",
             "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2022-11-01",
             "name": "[concat(variables('vmNameWindows'), '-nic')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
@@ -293,8 +320,8 @@
             }
         },
         {
-            "apiVersion": "2018-04-01",
             "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2022-11-01",
             "name": "[concat(variables('vmNameLinux'), '-nic')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
@@ -319,37 +346,23 @@
             }
         },
         {
-            "type": "Microsoft.Compute/availabilitySets",
-            "apiVersion": "2018-10-01",
-            "name": "[variables('availabilitySetName')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "platformFaultDomainCount": 2,
-                "platformUpdateDomainCount": 3
-            },
-            "sku": {
-                "name": "Aligned"
-            }
-        },
-        {
-            "apiVersion": "2018-10-01",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[concat(variables('vmNameWindows'))]",
+            "apiVersion": "2024-03-01",
+            "name": "[variables('vmNameWindows')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[concat('Microsoft.Network/networkinterfaces/', variables('vmNameWindows'), '-nic')]",
-                "[resourceId('Microsoft.Compute/availabilitySets/', variables('availabilitySetName'))]"
+                "[concat('Microsoft.Network/networkinterfaces/', variables('vmNameWindows'), '-nic')]"
             ],
             "tags": "[parameters('resourceTags')]",
+            "zones": [
+                "1"
+            ],
             "properties": {
-                "availabilitySet": {
-                    "id": "[resourceId('Microsoft.Compute/availabilitySets/', variables('availabilitySetName'))]"
-                },
                 "hardwareprofile": {
                     "vmsize": "[variables('vmSize')]"
                 },
                 "osProfile": {
-                    "computerName": "[concat(variables('vmNameWindows'))]",
+                    "computerName": "[variables('vmNameWindows')]",
                     "adminusername": "[parameters('username')]",
                     "adminpassword": "[parameters('password')]"
                 },
@@ -379,24 +392,23 @@
             }
         },
         {
-            "apiVersion": "2018-10-01",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[concat(variables('vmNameLinux'))]",
+            "apiVersion": "2024-03-01",
+            "name": "[variables('vmNameLinux')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[concat('Microsoft.Network/networkinterfaces/', variables('vmNameLinux'), '-nic')]",
-                "[resourceId('Microsoft.Compute/availabilitySets/', variables('availabilitySetName'))]"
+                "[concat('Microsoft.Network/networkinterfaces/', variables('vmNameLinux'), '-nic')]"
             ],
             "tags": "[parameters('resourceTags')]",
+            "zones": [
+                "1"
+            ],
             "properties": {
-                "availabilitySet": {
-                    "id": "[resourceId('Microsoft.Compute/availabilitySets/', variables('availabilitySetName'))]"
-                },
                 "hardwareprofile": {
                     "vmsize": "[variables('vmSize')]"
                 },
                 "osProfile": {
-                    "computerName": "[concat(variables('vmNameLinux'))]",
+                    "computerName": "[variables('vmNameLinux')]",
                     "adminusername": "[parameters('username')]",
                     "adminpassword": "[parameters('password')]"
                 },
@@ -426,9 +438,41 @@
             }
         },
         {
-            "name": "[variables('workspaceSolutions').Security.solutionName]",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2021-11-01",
+            "name": "[format('{0}/AzureMonitorWindowsAgent', variables('vmNameWindows'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', variables('vmNameWindows'))]"
+            ],
+            "properties": {
+                "publisher": "Microsoft.Azure.Monitor",
+                "type": "AzureMonitorWindowsAgent",
+                "typeHandlerVersion": "1.0",
+                "autoUpgradeMinorVersion": true,
+                "enableAutomaticUpgrade": true
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2021-11-01",
+            "name": "[format('{0}/AzureMonitorLinuxAgent', variables('vmNameLinux'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', variables('vmNameLinux'))]"
+            ],
+            "properties": {
+                "publisher": "Microsoft.Azure.Monitor",
+                "type": "AzureMonitorLinuxAgent",
+                "typeHandlerVersion": "1.7",
+                "autoUpgradeMinorVersion": true,
+                "enableAutomaticUpgrade": true
+            }
+        },
+        {
             "type": "Microsoft.OperationsManagement/solutions",
             "apiVersion": "2015-11-01-preview",
+            "name": "[variables('workspaceSolutions').Security.solutionName]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[variables('workspaceName')]"
@@ -444,40 +488,40 @@
             }
         },
         {
-            "name": "[variables('storageName')]",
             "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2025-06-01",
+            "name": "[variables('storageName')]",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2019-06-01",
+            "dependsOn": [],
+            "tags": "[parameters('resourceTags')]",
             "sku": {
                 "name": "[parameters('storageAccountType')]"
             },
-            "dependsOn": [],
-            "tags": "[parameters('resourceTags')]",
             "kind": "StorageV2",
             "properties": {
                 "supportsHttpsTrafficOnly": false
             }
         },
         {
-            "name": "[variables('appServicePlanName')]",
             "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2025-03-01",
+            "name": "[variables('appServicePlanName')]",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2015-08-01",
+            "dependsOn": [],
+            "tags": "[parameters('resourceTags')]",
             "sku": {
                 "name": "S1"
             },
-            "dependsOn": [],
-            "tags": "[parameters('resourceTags')]",
             "properties": {
                 "name": "[variables('appServicePlanName')]",
                 "numberOfWorkers": 1
             }
         },
         {
-            "name": "[variables('appServiceName')]",
             "type": "Microsoft.Web/sites",
+            "apiVersion": "2025-03-01",
+            "name": "[variables('appServiceName')]",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2015-08-01",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
             ],
@@ -488,9 +532,13 @@
         },
         {
             "type": "Microsoft.KeyVault/vaults",
-            "name": "[variables('kvName')]",
             "apiVersion": "2016-10-01",
+            "name": "[variables('kvName')]",
             "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', variables('appServiceName'))]"
+            ],
+            "tags": "[parameters('resourceTags')]",
             "properties": {
                 "sku": {
                     "family": "A",
@@ -513,18 +561,18 @@
                 "enabledForDeployment": false,
                 "enabledForDiskEncryption": false,
                 "enabledForTemplateDeployment": false
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', variables('appServiceName'))]"
-            ],
-            "tags": "[parameters('resourceTags')]"
+            }
         },
         {
             "type": "Microsoft.Web/sites",
-            "kind": "functionapp",
+            "apiVersion": "2025-03-01",
             "name": "[variables('functionName')]",
-            "apiVersion": "2016-08-01",
             "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+            ],
+            "tags": "[parameters('resourceTags')]",
+            "kind": "functionapp",
             "identity": {
                 "type": "SystemAssigned"
             },
@@ -558,18 +606,18 @@
                         }
                     ]
                 }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
-            ],
-            "tags": "[parameters('resourceTags')]"
+            }
         },
         {
-            "apiVersion": "2020-03-01",
-            "dependsOn": [],
             "type": "Microsoft.ContainerService/managedClusters",
-            "location": "[resourceGroup().location]",
+            "apiVersion": "2025-05-01",
             "name": "[variables('aksClusterName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [],
+            "tags": "[parameters('resourceTags')]",
+            "identity": {
+                "type": "SystemAssigned"
+            },
             "properties": {
                 "kubernetesVersion": "[variables('aksVersion')]",
                 "dnsPrefix": "[variables('aksDNSPrefix')]",
@@ -577,11 +625,11 @@
                     {
                         "name": "agentpool",
                         "count": 1,
-                        "vmSize": "Standard_B2s",
+                        "vmSize": "[variables('vmSize')]",
                         "osType": "Linux",
-                        "storageProfile": "ManagedDisks",
-                        "type": "AvailabilitySet",
-                        "mode": "System"
+                        "type": "VirtualMachineScaleSets",
+                        "mode": "System",
+                        "availabilityZones": ["1","2","3"]
                     }
                 ],
                 "nodeResourceGroup": "[variables('aksClusterName')]",
@@ -589,16 +637,12 @@
                     "loadBalancerSku": "standard",
                     "networkPlugin": "[variables('aksNetworkPlugin')]"
                 }
-            },
-            "tags": "[parameters('resourceTags')]",
-            "identity": {
-                "type": "SystemAssigned"
             }
         },
         {
-            "name": "[variables('containerRegistryName')]",
             "type": "Microsoft.ContainerRegistry/registries",
-            "apiVersion": "2019-05-01",
+            "apiVersion": "2025-11-01",
+            "name": "[variables('containerRegistryName')]",
             "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Basic"
@@ -608,10 +652,10 @@
             }
         },
         {
-            "name": "[variables('sqlServerName')]",
             "type": "Microsoft.Sql/servers",
+            "apiVersion": "2024-11-01-preview",
+            "name": "[variables('sqlServerName')]",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2015-05-01-preview",
             "dependsOn": [],
             "tags": "[parameters('resourceTags')]",
             "properties": {
@@ -620,10 +664,10 @@
             },
             "resources": [
                 {
-                    "name": "AllowAzureIPs",
                     "type": "firewallrules",
+                    "apiVersion": "2024-11-01-preview",
+                    "name": "AllowAzureIPs",
                     "location": "[resourceGroup().location]",
-                    "apiVersion": "2015-05-01-preview",
                     "dependsOn": [
                         "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
                     ],
@@ -633,10 +677,10 @@
                     }
                 },
                 {
-                    "name": "[variables('sqlDatabaseName')]",
                     "type": "databases",
+                    "apiVersion": "2024-11-01-preview",
+                    "name": "[variables('sqlDatabaseName')]",
                     "location": "[resourceGroup().location]",
-                    "apiVersion": "2017-03-01-preview",
                     "dependsOn": [
                         "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
                     ],
@@ -658,39 +702,39 @@
     ],
     "outputs": {
         "log analytics workspace": {
-            "type": "string",
+            "type": "String",
             "value": "[variables('workspaceName')]"
         },
         "virtual network": {
-            "type": "string",
+            "type": "String",
             "value": "[variables('vNetName')]"
         },
         "subnet": {
-            "type": "string",
+            "type": "String",
             "value": "[variables('subnetName')]"
         },
         "network security group": {
-            "type": "string",
+            "type": "String",
             "value": "[variables('nsgName')]"
         },
         "windows virtual machine": {
-            "type": "string",
+            "type": "String",
             "value": "[variables('vmNameWindows')]"
         },
         "linux virtual machine": {
-            "type": "string",
+            "type": "String",
             "value": "[variables('vmNameLinux')]"
         },
         "key vault": {
-            "type": "string",
+            "type": "String",
             "value": "[variables('kvName')]"
         },
         "container registry": {
-            "type": "string",
+            "type": "String",
             "value": "[variables('containerRegistryName')]"
         },
         "sql database": {
-            "type": "string",
+            "type": "String",
             "value": "[variables('sqlDatabaseName')]"
         }
     }
