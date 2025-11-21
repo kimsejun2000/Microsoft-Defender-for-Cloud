@@ -160,7 +160,7 @@ To have your labeled data visible in Defender for Cloud, follow these steps to c
 
 3. Select **Apply** and **Save**.  
 
-# Exercise 5: Upload sensitive data
+## Exercise 5: Upload sensitive data
 
 ### Upload data to Storage account
 

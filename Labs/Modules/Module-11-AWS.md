@@ -1,4 +1,4 @@
-# Module 11 - Connecting an AWS  project
+# Module 11 - Connecting an AWS project
 
 <p align="left"><img src="../Images/asc-labs-advanced.gif?raw=true"></p>
 

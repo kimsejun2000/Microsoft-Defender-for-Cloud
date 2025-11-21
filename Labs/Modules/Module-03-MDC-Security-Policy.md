@@ -1,4 +1,4 @@
-# Module 3 - Security Policy
+# Module 3 - Microsoft Defender for Cloud Security Policy
 
 <p align="left"><img src="../Images/asc-labs-intermediate.gif?raw=true"></p>
 

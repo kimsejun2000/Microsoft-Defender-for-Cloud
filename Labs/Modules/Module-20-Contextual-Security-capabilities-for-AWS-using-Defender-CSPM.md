@@ -1,4 +1,4 @@
-# Module 20 –Contextual Security capabilities for AWS using Defender CSPM  
+# Module 20 – Contextual Security capabilities for AWS using Defender CSPM  
 
 <p align="left"><img src="../Images/asc-labs-intermediate.gif?raw=true"></p>
 

@@ -58,7 +58,7 @@ This lab is designed for:
 - **Cloud Security Professionals:** Learn how to secure environments using MDC.  
 - **SOC Analysts:** Gain hands-on experience with XDR and its integration with MDC to streamline threat investigation and mitigation.  
 
-## Step 1: Setting Up the Environment
+## Exercise 1: Setting Up the Environment
 
 ### 1.1 Prerequisites
 
@@ -227,7 +227,7 @@ The output should show the AKS nodes in a Ready state
 - Ensure stable internet connectivity for downloading tools, interacting with Azure, and pulling Helm charts
 - Recommended: Keep all tools updated to their latest versions
 
-## Step 2: Deploying the Attack Simulation
+## Exercise 2: Deploying the Attack Simulation
 
 ### 2.1 Clone the GitHub Repository (Optional)
 
@@ -258,7 +258,7 @@ You should see `simulation.py` in the output.
 
 > **Notes**: If the download fails, check your internet connection or ensure that curl is installed.
 
-## Step 3: Running Individual and Combined Attack Scenarios
+## Exercise 3: Running Individual and Combined Attack Scenarios
 
 ### 3.1 Point kubeconfig to the Target Cluster
 
@@ -342,7 +342,7 @@ kubectl logs mdc-simulation-attacker -n mdc-simulation
 
 ## Azure Defender Cloud Security Alert Analysis Guide
 
-### Step 4: Observing and Analyzing MDC Alerts
+## Exercise 4: Observing and Analyzing MDC Alerts
 
 ### 4.1 Review Security Alerts
 
@@ -383,7 +383,7 @@ If no alerts are generated:
   ```
 - Confirm the AKS cluster is properly protected in MDC under Environment Settings > Azure Kubernetes Service.
 
-### Step 5: Correlating and Responding to Incidents Using XDR
+## Exercise 5: Correlating and Responding to Incidents Using XDR
 
 ### 5.1 Correlate Alerts in Microsoft 365 Defender
 

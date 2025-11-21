@@ -1,4 +1,4 @@
-# Module 21 –Contextual Security capabilities for GCP using Defender CSPM  
+# Module 21 – Contextual Security capabilities for GCP using Defender CSPM  
 
 <p align="left"><img src="../Images/asc-labs-intermediate.gif?raw=true"></p>
 
