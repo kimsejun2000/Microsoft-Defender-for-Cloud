@@ -25,7 +25,7 @@ Advanced | 300+ | You have lots of experience and are looking to learn about adv
 
 ## Modules
 
-[**Module 1 – Preparing the Environment (L100)**](https://github.com/kimsejun2000/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2001%20-%20Preparing-the-Environment.md)
+[**Module 1 – Preparing the Environment (L100)**](./Modules/Module%2001%20-%20Preparing-the-Environment.md)
 * [Creating an Azure Trial Subscription](./Modules/Module%2001%20-%20Preparing-the-Environment.md#exercise-1-creating-an-azure-trial-subscription)
 - [Provisioning resources (automation)](./Modules/Module-1-Preparing-the-Environment.md#exercise-2-provisioning-resources)
 - [Enabling Microsoft Defender for Cloud](./Modules/Module-1-Preparing-the-Environment.md#exercise-3-enabling-azure-defender)
