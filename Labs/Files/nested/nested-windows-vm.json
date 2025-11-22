@@ -40,7 +40,7 @@
         // parameters for virtual network name
         "virtualNetworkName": {
             "type": "string",
-            "defaultValue": "asclab-vnet",
+            "defaultValue": "mdclab-vnet",
             "metadata": {
                 "description": "This needs to be the same name as the vNet you used in the previous deploymnet. Open the Resource Group hosting Lab environment and copy the vNet Name"
             }
@@ -90,7 +90,7 @@
         "publicIPAddressType": "Static",
         "vmName": "[parameters('winServerName')]",
         "vmSize": "[parameters('vmSize')]",
-        //"virtualNetworkName": "asclab-vnet",
+        //"virtualNetworkName": "mdclab-vnet",
         //"networkSecurityGroupName": "myNSG",
         //"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('networkSecurityGroupName'))]",
         "nicName": "[concat(variables('vmName'), '-nic')]",
