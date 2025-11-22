@@ -422,6 +422,7 @@ If no alerts are generated:
      ![Mod 25 Security Alerts](../Images/mod.25.xdr.actions.png?raw=true)
 
      Alternatively, you can do it manually by scale it down or cordon the affected Kubernetes nodes:
+     
      ```bash
      kubectl cordon <node-name>
      kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data
@@ -445,7 +446,6 @@ If no alerts are generated:
 
 - Verify that incidents generated in Microsoft 365 Defender correlate correctly with alerts from MDC.
 - Ensure response actions (e.g., isolation, blocking) are successfully executed.
-
 
 ## **Introduction to Advanced Hunting**
 
@@ -489,7 +489,6 @@ In the following queries, you’ll learn how to:
 3. Correlate attacker and victim activities into a unified timeline for actionable reporting.
 
 Let’s start by examining attacker actions and move toward comprehensive correlation between attacker and victim activities.
-
 
 ## Detailed Queries
 ### Query Usage Guidance
@@ -604,3 +603,4 @@ AttackerActions
 - Since all commands executed via the webshell originate from php-fpm, it's critical for tracing attacker-victim interactions.
 - This parent-child process relationship allows attribution of malicious activity to specific attacker commands.
 
+### Continue with the next lab [Module 26 - Defender for Cloud Code Reachability Vulnerabilities with Endor Labs](../Modules/Module-26-Code-Reachability-Vulnerabilities.md)

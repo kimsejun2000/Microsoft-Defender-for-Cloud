@@ -37,7 +37,7 @@ Important - Make sure you are not logged in with your corporate user.
 ### Exercise 2: Provisioning resources
 
 > ❗ Important: <br>
-> You should also be accessing the Microsoft Defender for Cloud labs in the same private window. Otherwise, link from the lab will be open on a non-private window. 
+> You should also be accessing the Microsoft Defender for Cloud labs in the same private window. Otherwise, link from the lab will be open on a non-private window.
 
 As part of the exercises mentioned in this lab guide, you will create an environment using an automated deployment based on ARM template.
 An ARM template is a JavaScript Object Notation (JSON) file that defines the infrastructure and configuration for your project. The template uses declarative syntax, which lets you state what you intend to deploy without having to write the sequence of programming commands to create it.
@@ -45,21 +45,21 @@ The following list of resources will be deployed during the provisioning process
 
 Name | Resource Type | Purpose
 -----| ------------- | -------
-asclab-win | Virtual machine | Windows Server
-asclab-linux | Virtual machine | Linux Server
-asclab-as | Availability set | Availability set for the 2-VMs
-asclab-aks | Kubernetes service | Testing container services capabilities
-asclab-app-[uniqestring] | App Service | App service to be used for web app, function app
-asclab-sql-[uniqestring] | SQL server | To be using for the sample database
-asclab-as | SQL database | Sample database based on AdventureWorks template
-asclab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendations and security alerts
-asclab-fa-[uniqestring] | Function App | Demonstrating related built-in and custom security recommendations
-asclab-la-[uniqestring]	| Log Analytics workspace | Log Analytics workspace used for data collection and analysis, storing logs and continuous export data
-asclab-nsg | Network security group | Required for Just-in-Time access and security recommendations
-asclab-splan | App Service plan | Demonstrating related security recommendations
-asclab-vnet | Virtual network | Default virtual network for both Azure VM and for network related recommendations
-asclabcr[uniqestring] | Container registry | Demonstrating related security recommendations
-asclabsa[uniqestring] | Storage account | Demonstrating related security recommendations
+mdclab-win | Virtual machine | Windows Server
+mdclab-linux | Virtual machine | Linux Server
+mdclab-as | Availability set | Availability set for the 2-VMs
+mdclab-aks | Kubernetes service | Testing container services capabilities
+mdclab-app-[uniqestring] | App Service | App service to be used for web app, function app
+mdclab-sql-[uniqestring] | SQL server | To be using for the sample database
+mdclab-as | SQL database | Sample database based on AdventureWorks template
+mdclab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendations and security alerts
+mdclab-fa-[uniqestring] | Function App | Demonstrating related built-in and custom security recommendations
+mdclab-la-[uniqestring]	| Log Analytics workspace | Log Analytics workspace used for data collection and analysis, storing logs and continuous export data
+mdclab-nsg | Network security group | Required for Just-in-Time access and security recommendations
+mdclab-splan | App Service plan | Demonstrating related security recommendations
+mdclab-vnet | Virtual network | Default virtual network for both Azure VM and for network related recommendations
+mdclabcr[uniqestring] | Container registry | Demonstrating related security recommendations
+mdclabsa[uniqestring] | Storage account | Demonstrating related security recommendations
 SecurityCenterFree | Solution | Default workspace solution used for Microsoft Defender for Cloud free tier
 
 After the deployment of the template, you can check the progress of your deployment if you click on your created resource group details, then click on Deployments (1 deploying).
@@ -75,7 +75,7 @@ Continue with the exercise below until the deployment has completed.
 
 2.	You will be redirected to Azure Portal > custom deployment page where you should specify mandatory fields for deployment.
 3.	On the subscription field, select **Azure subscription 1**.
-4.	On the resource group field, click on **Create new** and name it as **asclab** (you can pick any name you want or keep the default).
+4.	On the resource group field, click on **Create new** and name it as **mdclab** (you can pick any name you want or keep the default).
 5.	On the parameters section, select the closest data center **region** to your current location (all downstream resources will be created in the same region as the resource group).
 6. Select a password that will be used across services (such as credentials for virtual machines and SQL database)
 > ❗ Important: <br>
@@ -84,7 +84,7 @@ Continue with the exercise below until the deployment has completed.
 8.	The deployment takes about **10 minutes** to complete.<br>
 
 > The *deployment is in progress* page continues to update and show the resources being uploaded to the environment assuming the deployment is successful.  
-> During the deployment, additional resource group will be created automatically for Kubernetes resources named as “asclab-aks”.<br>
+> During the deployment, additional resource group will be created automatically for Kubernetes resources named as “mdclab-aks”.<br>
 
 <p align="left"><img src="../Images/deploy-to-azure.gif?raw=true"></p>
 
@@ -120,4 +120,4 @@ When the deployment is complete, you should see the following:
 > * You can enable Microsoft Defender for Cloud trial for 30-days on a subscriptions only if not previously used.
 > * To enable Microsoft Defender for Cloud on a subscription, you must be assigned the role of Subscription Owner, Subscription Contributor, or Security Admin.
 
-### Continue with the next lab: [Module 2 - Exploring Microsoft Defender for Cloud](../Modules/Module-2-Exploring-Azure-Security-Center.md)
+### Continue with the next lab: [Module 2 - Exploring Microsoft Defender for Cloud](../Modules/Module-02-Exploring-Azure-Security-Center.md)

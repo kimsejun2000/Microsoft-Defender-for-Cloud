@@ -23,10 +23,17 @@
                 "description": "Password for the Virtual Machine."
             }
         },
+        "vmSize": {
+            "defaultValue": "Standard_D2s_v5",
+            "type": "string",
+            "metadata": {
+                "description": "VM size for the Virtual Machine."
+            }
+        },
         // parameters for virtual network name
         "virtualNetworkName": {
             "type": "string",
-            "defaultValue": "asclab-vnet",
+            "defaultValue": "mdclab-vnet",
             "metadata": {
                 "description": "This needs to be the same name as the vNet you used in the previous deploymnet. Open the Resource Group hosting Lab environment and copy the vNet Name"
             }
@@ -73,17 +80,17 @@
     "variables": {
         //"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
         "publicIPAddressName": "[concat(variables('vmName'), '-pip')]",
-        "publicIPAddressType": "Dynamic",
+        "publicIPAddressType": "Static",
         "vmName": "[parameters('linuxServerName')]",
-        "vmSize": "Standard_D2s_v3",
-        //"virtualNetworkName": "asclab-vnet",
+        "vmSize": "[parameters('vmSize')]",
+        //"virtualNetworkName": "mdclab-vnet",
         //"networkSecurityGroupName": "myNSG",
         //"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('networkSecurityGroupName'))]",
         "nicName": "[concat(variables('vmName'), '-nic')]",
         "osType": {
             "publisher": "canonical",
-            "offer": "0001-com-ubuntu-server-jammy",
-            "sku": "22_04-lts-gen2",
+            "offer": "ubuntu-24_04-lts",
+            "sku": "server",
             "version": "latest",
             "osDiskName": "[concat(variables('vmName'), '-osdisk')]",
             "dataDiskName": "[concat(variables('vmName'), '-datadisk')]"
@@ -109,6 +116,12 @@
             "name": "[variables('publicIPAddressName')]",
             "apiVersion": "2021-02-01",
             "location": "[parameters('location')]",
+            "sku": {
+                "name": "Standard"
+            },
+            "zones": [
+                "2"
+            ],
             "properties": {
                 "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
                 "dnsSettings": {
@@ -166,41 +179,45 @@
                             "patchMode": "ImageDefault",
                             "assessmentMode": "ImageDefault"
                         }
-                }
+                    }
                 },
                 "storageProfile": {
-                "imageReference": {
-                    "publisher": "[variables('osType').publisher]",
-                    "offer": "[variables('osType').offer]",
-                    "sku": "[variables('osType').sku]",
-                    "version": "[variables('osType').version]"
-                },
-                "osDisk": {
-                    "createOption": "FromImage",
-                    "name": "[variables('osType').osDiskName]",
-                    "managedDisk": {
-                    "storageAccountType": "StandardSSD_LRS"
-                    }
-                },
-                "dataDisks": [
-                    {
-                    "diskSizeGB": 1023,
-                    "lun": 0,
-                    "createOption": "Empty",
-                    "name": "[variables('osType').dataDiskName]"
-                    }
-                ]
+                    "imageReference": {
+                        "publisher": "[variables('osType').publisher]",
+                        "offer": "[variables('osType').offer]",
+                        "sku": "[variables('osType').sku]",
+                        "version": "[variables('osType').version]"
+                    },
+                    "osDisk": {
+                        "createOption": "FromImage",
+                        "name": "[variables('osType').osDiskName]",
+                        "managedDisk": {
+                        "storageAccountType": "StandardSSD_LRS"
+                        }
+                    },
+                    "dataDisks": [
+                        {
+                        "diskSizeGB": 1023,
+                        "lun": 0,
+                        "createOption": "Empty",
+                        "name": "[variables('osType').dataDiskName]"
+                        }
+                    ]
                 },
                 "networkProfile": {
-                "networkInterfaces": [
-                    {
-                    "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
-                    }
-                ]
+                    "networkInterfaces": [
+                        {
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+                        }
+                    ]
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"]
+                "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+            ],
+            "zones": [
+                "2"
+            ]
         },
 
         //Custom Script Extension

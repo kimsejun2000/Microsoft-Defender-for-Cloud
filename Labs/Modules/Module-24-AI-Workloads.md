@@ -2,7 +2,6 @@
 
 ![asc-labs-intermediate](https://github.com/user-attachments/assets/a96db39c-df4f-4a09-a164-edbeb6d19189)
 
-
 #### 🎓 Level: 200 (Intermediate)
 #### ⌛ Estimated time to complete this lab: 30 minutes
 
@@ -10,9 +9,9 @@
 Safeena Begum [GitHub](https://github.com/safeenab786), Shiran Horev, Dick Lake
 
 ## Objectives
-This exercise guides you through enabling and configuring threat protection and posture management for AI workloads in Microsoft Defender for Cloud and will help you simulate Jailbreak attack proving the value Microsoft Defender for Cloud brings to secure the AI workloads in your environments. 
+This exercise guides you through enabling and configuring threat protection and posture management for AI workloads in Microsoft Defender for Cloud and will help you simulate Jailbreak attack proving the value Microsoft Defender for Cloud brings to secure the AI workloads in your environments.
 
-## Exercise 1: Enable AI Workloads 
+## Exercise 1: Enable AI Workloads
 
 To enable the AI workloads plan, follow these steps:
 1.	Sign in to the Azure portal.
@@ -20,7 +19,6 @@ To enable the AI workloads plan, follow these steps:
 3.	In the Defender for Cloud menu, select Environment settings.
 4.	Select the relevant Azure subscription.
 5.	On the Defender plans page, toggle the AI workloads to On.
-
 
 ![image](https://github.com/user-attachments/assets/33173d74-e777-4b89-99a9-d1dc48171d8c)
 
@@ -35,15 +33,13 @@ Detailed prerequisites can be found in our [documentation](https://learn.microso
 
 ### Prerequisites
 
-1.	Launch Azure portal, and create a resource group dedicated for the demo (or use one that you have high permissions on- Owner/Contributor [if you will be deploying an application from the AI Foundry portal, you will need `Owner` permissions as managed identities]).   
+1.	Launch Azure portal, and create a resource group dedicated for the demo (or use one that you have high permissions on- Owner/Contributor [if you will be deploying an application from the AI Foundry portal, you will need `Owner` permissions as managed identities]).
 2.	Make sure you have an Azure AI Foundry resource deploy in our resource group or [create a new one](https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource?pivots=azportal).
 3. Deploy a model: How to [deploy a model](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model)
 
+   a. Any models in Azure OpenAI (the various GPTs) *OR* the MaaS models (Mistral, Llama, Deepseek, etc.) should be fine.  As this is a demo choosing a cheaper model (gpt-4o-mini or nano is acceptable)
 
-   
-     a. Any models in Azure OpenAI (the various GPTs) *OR* the MaaS models (Mistral, Llama, Deepseek, etc.) should be fine.  As this is a demo choosing a cheaper model (gpt-4o-mini or nano is acceptable)
-  	   
-      b. Validate that you didn’t disable or replace the content filters for this model deployment. If you are unsure if the existing deployments have content filters with Prompt shields enabled, follow [these steps](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/content-filters).
+   b. Validate that you didn’t disable or replace the content filters for this model deployment. If you are unsure if the existing deployments have content filters with Prompt shields enabled, follow [these steps](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/content-filters).
 
 ### Chatting with the model
 
@@ -94,9 +90,10 @@ To gain access to the capabilities provided by Defender CSPM, you'll need to <a 
    ![image](../Images/dataAndAIOverview.png)
    b. Each of these items is selectable and will take you to a drill down for that specific item.  
 2. Cloud Security Explorer
-   
+
    a. Cloud Security Explorer is a powerful tool within MDC that allows users to proactively identify and manage security risks across multi-cloud environments
    b. In the search tool, start typing `Used for `.  While you are typing, you will see two insights; `Used for AI` and `Used for AI grounding`
    ![image](../Images/usedForAI.png)
    c. Select one and search.  If you have results, click `View Details` and you can get a description and the evidence of 'why' we claim that this resource is in the results.  
- 
+
+### Continue with the next lab [Module 25 - Defender for Cloud and XDR Integration](../Modules/Module-25-Defender-XDR-Integration.md)

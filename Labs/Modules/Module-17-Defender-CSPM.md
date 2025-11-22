@@ -1,4 +1,4 @@
-# Module 17 – Defender CSPM  
+# Module 17 – Defender CSPM
 
 <p align="left"><img src="../Images/asc-labs-intermediate.gif?raw=true"></p>
 
@@ -16,10 +16,10 @@ In this exercise, you will learn how to enable Defender for CSPM, and leverage D
 
 ## Exercise 1: Preparing the Environment for DCSPM plan
 
-Pre-requisites: Deploy the Environment in **Module 1 - Preparing the Environment**
+Pre-requisites: Deploy the Environment in [Module 1 - Preparing the Environment](../Modules/Module-01-Preparing-the-Environment.md)
 
 If you already finished Module 1 of this lab, (Module 1 – Preparing the Environment), you will deploy an extended environment for Defender CSPM plan.
-As part of this exercise, you will create an environment using an automated deployment based on ARM template. 
+As part of this exercise, you will create an environment using an automated deployment based on ARM template.
 
 The following list of resources will be deployed during the provisioning process (including dependencies like disks, network interfaces, public IP addresses, etc.):
 Name | Resource Type | Purpose
@@ -27,21 +27,19 @@ Name | Resource Type | Purpose
 dcspmlab-winsrv | Virtual machine | Windows Server
 dcspmlab-nix | Virtual machine | Linux Server
 
-
 1.	Prepare your lab environment by clicking on the blue **Deploy to Azure** button below:
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FMicrosoft-Defender-for-Cloud%2Fmaster%2FLabs%2FFiles%2Fdcspmlabdeploy.json" target="_blank"><img src="https://aka.ms/deploytoazurebutton"/></a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fkimsejun2000%2FMicrosoft-Defender-for-Cloud%2Frefs%2Fheads%2Fmain%2FLabs%2FFiles%2Fdcspmlabdeploy.json" target="_blank"><img src="https://aka.ms/deploytoazurebutton"/></a>
   
 2.	You will be redirected to **Azure Portal** > **custom deployment** page where you should specify mandatory fields for deployment.
 ![image](https://user-images.githubusercontent.com/102209701/215821808-99521c72-065c-4078-af9c-893ac8719e24.png)
 
- 
 3.	On the **subscription** field, select Azure subscription used in **Module 1**.
-4.	On the **Resource group** field, click on **select existing** and select asclab (you can pick any name you want or keep the default).
+4.	On the **Resource group** field, click on **select existing** and select mdclab (you can pick any name you want or keep the default).
 5.	On the Instance Details section, select the data center **region** you deployed the ARM Template in **Module 1** (all downstream resources will be created in the same region as the resource group).
 6.	Select **Admin Username** and **Admin password** that will be used for Windows Virtual Machine and Linux Virtual Machine you are deploying.
 Notice that password must be between 12 and 72 characters and have 3 of the following: 1 lower case, 1 upper case, 1 number and 1 special character.
-7.	Select **Storage Account Name** (asclabsa[uniqestring]), **Key Vault Name** (asclab-kv-[uniqestring]), and **Sql Server Name** (asclab-sql-[uniqestring]) you already deployed in Module 1. 
+7.	Select **Storage Account Name** (mdclabsa[uniqestring]), **Key Vault Name** (mdclab-kv-[uniqestring]), and **Sql Server Name** (mdclab-sql-[uniqestring]) you already deployed in Module 1. 
 8.	Click **Review + create** to start the validation process. Once validation passed, click on **Create** to start the ARM deployment on your subscription.
 9.	The deployment takes about **10 minutes** to complete.
 The deployment is in progress page continues to update and show the resources being uploaded to the environment assuming the deployment is successful.
@@ -70,7 +68,7 @@ To gain access to the capabilities provided by Defender CSPM, you'll need to <a 
 5.	Click on **Save** to save the changes.
 The agentless scanning engines will begin their assessments and are expected to generate insights within 24 hours. Please allow this time for the initial data collection and analysis to complete, then return to review the results.
 
- ## Use-case for the exercise
+## Use-case for the exercise
 
 A hypothetical organization, "Adatum Corporation," had a robust cybersecurity infrastructure in place. However, one day, an attacker used a brute force or password spraying attack to gain access to an Internet-exposed server of the organization.
 
@@ -80,7 +78,7 @@ In response to the attack, the security engineers leveraged the attack path anal
 
 Additionally, they utilized **Sensitive Data Discovery** to identify and secure sensitive information that could be at risk of exposure. **Permission Management** tools were implemented to review and tighten access controls, ensuring that permissions were strictly granted based on the principle of least privilege. The discovery of plaintext secrets in the environment prompted the integration of **Secret Discovery** tools to encrypt sensitive data and manage secrets more securely.
 
-The IT department didn't stop there. They also took a proactive approach by implementing security recommendations to fix the vulnerabilities on the Internet-exposed servers and prevent similar attacks in the future. Utilizing the Risk Prioritization feature of DCSPM, the security team gained full visibility into which recommendations should be prioritized, focusing their efforts on addressing the most critical vulnerabilities first. Additionally, they implemented a robust incident response plan and conducted regular security training for employees. 
+The IT department didn't stop there. They also took a proactive approach by implementing security recommendations to fix the vulnerabilities on the Internet-exposed servers and prevent similar attacks in the future. Utilizing the Risk Prioritization feature of DCSPM, the security team gained full visibility into which recommendations should be prioritized, focusing their efforts on addressing the most critical vulnerabilities first. Additionally, they implemented a robust incident response plan and conducted regular security training for employees.
 
 Thanks to the combination of both reactive and proactive measures, Adatum Corporation was able to prevent a major data breach and keep their sensitive information safe. This hypothetical use case demonstrates the importance of having both a reactive and proactive approach when it comes to cybersecurity, including performing attack path and security risk analysis, implementing security recommendations, assigning/managing change actions to the proper owners, and educating employees to prevent future attacks.  
 
@@ -164,10 +162,9 @@ In this exercise, you will utilize the Cloud Security Explorer in Microsoft Defe
 
    ![image](https://user-images.githubusercontent.com/102209701/230960239-65feb795-4ab7-47e1-8f0e-fff3e8ef2085.png)
 
- 
 ## Exercise 5: Assign Governance Rule
 
-In this exercise, you will learn to establish and manage recommendation remediation auto assignement and configuration through MDC Governance rules within Microsoft Defender for Cloud. 
+In this exercise, you will learn to establish and manage recommendation remediation auto assignement and configuration through MDC Governance rules within Microsoft Defender for Cloud.
 
 Assume the role of a security administrator at a large organization managing multiple Azure subscriptions. Your challenge is to automate the remediation process for high-severity vulnerabilities, ensuring they are addressed promptly to maintain a robust security posture.
 
@@ -192,7 +189,6 @@ Through this exercise, you will configure a governance rule that ensures all hig
 
    ![Governance Report View](https://user-images.githubusercontent.com/102209701/215830577-947675fb-2f05-44a0-9482-fbd58a86d360.png)
 
-
 ## Exercise 6: Analyze Security Recommendations by Risk Level - Risk Prioritization
 
 In this exercise, you will learn how to utilize the Risk Prioritization feature in Microsoft Defender for Cloud to analyze and prioritize security recommendations based on their risk levels. This capability allows security teams to focus on the most critical issues that could impact the security posture of their cloud environments.
@@ -211,7 +207,6 @@ This exercise aims to enhance your ability to effectively prioritize and manage 
 3. Sort or filter the recommendations by risk level by clicking on the **Risk level** column to sort from Low to Critical, or vice versa. This will organize the recommendations starting from the highest to the lowest risk levels. Here, you can view multiple valuable insights as they are exposed through each column of the records. You can see the risk factors that have contributed to the risk level evaluation, the number of attack paths found for the resource, whether an owner has been assigned to its remediation, and the status of the change.
 
 ![image](../Images/module17Img08.png?raw=true)
-
 
 4. Select a high-risk recommendation to view detailed information about the risk factors, affected resources, and suggested remediation steps.
 
@@ -237,9 +232,9 @@ This exercise aims to provide you with practical experience in managing cloud pe
 4. Under the plan settings, enable the **Permissions Management** extension.
 5. Click **Continue** and then **Save** to apply the changes. After a few minutes, you'll notice that:
 
-    - Your subscription has a new Reader assignment for the Cloud Infrastructure Entitlement Management application.
+   - Your subscription has a new Reader assignment for the Cloud Infrastructure Entitlement Management application.
 
-    - The new Azure CSPM (Preview) standard is assigned to your subscription.
+   - The new Azure CSPM (Preview) standard is assigned to your subscription.
 
 ![image](../Images/module17Img10.png?raw=true)
 
@@ -252,11 +247,4 @@ This exercise aims to provide you with practical experience in managing cloud pe
 
 For further details on enabling and using Permissions Management, refer to the official [Microsoft documentation](https://learn.microsoft.com/en-us/azure/defender-for-cloud/enable-permissions-management).
 
-
-
-
- 
-
-
-
-
+### Continue with the next lab [Module 18 - Agentless container posture through Defender CSPM](../Modules/Module-18-Agentless-container-posture-through-Defender-DCSPM.md)

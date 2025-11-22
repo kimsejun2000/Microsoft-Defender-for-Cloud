@@ -1,4 +1,4 @@
-# Module 19 – Defender for Storage  
+# Module 19 – Defender for Storage
 
 💁💁‍♀️ Authors
 
@@ -18,20 +18,20 @@ In these exercises, you will learn how to enable Defender for Storage and levera
 
 ## Table of Contents
 
-- [Exercise 1: Preparing the Environment for Defender for Storage Plan](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#exercise-1-preparing-the-environment-for-defender-for-storage-plan)
-- [Exercise 2: Create a Storage Account](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#exercise-2-create-a-storage-account)
-- [Optional Exercise 3: Exclude Folder in Windows Security](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#optional--exercise-3-exclude-folder-in-windows-security)
-- [Exercise 4: Create EICAR File](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#-exercise-4-create-eicar-file)
-- [Exercise 5: Upload Malware to a Storage Account](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#-exercise-5-upload-malware-to-a-storage-account)
-- [Exercise 6: Security Alert](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#%EF%B8%8F-exercise-6-security-alert)
-- [Exercise 7: Configure Automation to Delete the Malicious File](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#-exercise-7-configure-automation-to-delete-the-malicious-file-based-on-security-alert)
-- [Exercise 8: Code to Upload Files to Storage Account and Monitor the Blob Index Tag](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#-exercise-8-code-to-upload-files-to-storage-account-and-monitor-the-blob-index-tag-itself)
-- [Exercise 9: Set up "Send Scan Results to Log Analytics" and Read It](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#-exercise-9-set-up-send-scan-results-to-log-analytics-and-read-it)
-- [Exercise 10: Function App Based on Event Grid Events](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#%EF%B8%8F-exercise-10-function-app-based-on-event-grid-events)
-- [Exercise 11: ABAC for users not to read malicious files](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#%EF%B8%8F-exercise-11-abac-for-users-not-to-read-malicious-files)
-- [Exercise 12: Configure and Test On-Demand Malware Scanning](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#-exercise-12-test-on-demand-malware-scanning)
-- [Exercise 13: Built-in Malware Automatic Remediation]()
-- [Appendix: Grant Storage Blob Data Owner to a User in a Storage Account Container](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2019%20-%20Defender%20for%20Storage.md#-appendix)
+- [Exercise 1: Preparing the Environment for Defender for Storage Plan](./Module-19-Defender-for-Storage.md#-exercise-1-preparing-the-environment-for-defender-for-storage-plan)
+- [Exercise 2: Create a Storage Account](./Module-19-Defender-for-Storage.md#-exercise-2-create-a-storage-account)
+- [Optional Exercise 3: Exclude Folder in Windows Security](./Module-19-Defender-for-Storage.md#optional--exercise-3-exclude-folder-in-windows-security)
+- [Exercise 4: Create EICAR File](./Module-19-Defender-for-Storage.md#-exercise-4-create-eicar-file)
+- [Exercise 5: Upload Malware to a Storage Account](./Module-19-Defender-for-Storage.md#-exercise-5-upload-malware-to-a-storage-account)
+- [Exercise 6: Security Alert](./Module-19-Defender-for-Storage.md#️-exercise-6-security-alert)
+- [Exercise 7: Configure Automation to Delete the Malicious File](./Module-19-Defender-for-Storage.md#-exercise-7-configure-automation-to-delete-the-malicious-file-based-on-security-alert)
+- [Exercise 8: Code to Upload Files to Storage Account and Monitor the Blob Index Tag](./Module-19-Defender-for-Storage.md#-exercise-8-code-to-upload-files-to-storage-account-and-monitor-the-blob-index-tag-itself)
+- [Exercise 9: Set up "Send Scan Results to Log Analytics" and Read It](./Module-19-Defender-for-Storage.md#-exercise-9-set-up-send-scan-results-to-log-analytics-and-read-it)
+- [Exercise 10: Function App Based on Event Grid Events](./Module-19-Defender-for-Storage.md#️-exercise-10-function-app-based-on-event-grid-events)
+- [Exercise 11: ABAC for users not to read malicious files](./Module-19-Defender-for-Storage.md#️-exercise-11-abac-for-users-not-to-read-malicious-files)
+- [Exercise 12: Configure and Test On-Demand Malware Scanning](./Module-19-Defender-for-Storage.md#-exercise-12-test-on-demand-malware-scanning)
+- [Exercise 13: Built-in Malware Automatic Remediation](./Module-19-Defender-for-Storage.md#exercise-13-built-in-malware-automated-remediation)
+- [Appendix: Grant Storage Blob Data Owner to a User in a Storage Account Container](./Module-19-Defender-for-Storage.md#-appendix)
 
 ## 👩🏽‍🍳 Exercise 1: Preparing the Environment for Defender for Storage plan
 
@@ -686,3 +686,5 @@ Check this demo video we created
 
 7. Click **Review + assign**.
 ![app6](../Images/appendix6.png?raw=true)
+
+### Continue with the next lab [Module 20 – Contextual Security capabilities for AWS using Defender CSPM](../Modules/Module-20-Contextual-Security-capabilities-for-AWS-using-Defender-CSPM.md)

@@ -9,7 +9,7 @@
 
 # Overview - Reachability Demo
 
-This demo deploys a container image with reachable vulnerabilities from [Damn Vulnerable GraphQL Application](https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application). All necessary content for this lab can be found in [this repository](https://github.com/laragoldstein13/ReachabilityDemo). You will need to clone the repository in order to complete the lab. 
+This demo deploys a container image with reachable vulnerabilities from [Damn Vulnerable GraphQL Application](https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application). All necessary content for this lab can be found in [this repository](https://github.com/laragoldstein13/ReachabilityDemo). You will need to clone the repository in order to complete the lab.
 
 # Table of Contents
 * [Prerequisites](#prerequisites)
@@ -38,7 +38,7 @@ This demo deploys a container image with reachable vulnerabilities from [Damn Vu
 6. Add the following variables to the pipeline: clusterName (name of the Kubernetes cluster to deploy the container on), containerRegistry (login server name for the Azure Container Registry, e.g., reachability.azurecr.io), dockerConnection (name of the service connection to Docker to push image to Azure Container Registry), resourceGroup (resource group that hosts the Kubernetes cluster), and subscription (name of the service connection name to Azure Resource Manager).
 ![image](https://github.com/user-attachments/assets/fd265dee-fbc5-4933-8b12-07e7ff76fefc)
 7. Save and run the pipeline.
-   
+
 # Exercise 2: GitHub Configuration
 1. Clone [this repository]([this repository](https://github.com/laragoldstein13/ReachabilityDemo/tree/master)) in GitHub.
 2. Navigate to Settings > Secrets and Variables > Actions in the GitHub repository.
@@ -50,7 +50,6 @@ This demo deploys a container image with reachable vulnerabilities from [Damn Vu
 8. Save and run the workflow.
 9. Deploy the container image from ACR to your AKS cluster in the Azure Portal. The easiest way to do this is to navigate to the AKS cluster and select Create > Create a quickstar application. Note that your registry and Kubernetes cluser must be [linked](https://learn.microsoft.com/en-us/azure/aks/cluster-container-registry-integration?tabs=azure-cli#configure-acr-integration-for-an-existing-aks-cluster) for this to work. To see the attack path, the container should be exposed via a service in Kubernetes. It is not recommended to do this in production tenants. 
 ![image](https://github.com/user-attachments/assets/74bb2699-1e89-4f34-9140-03bba0b75fae)
- 
 
 # Disclaimer
 

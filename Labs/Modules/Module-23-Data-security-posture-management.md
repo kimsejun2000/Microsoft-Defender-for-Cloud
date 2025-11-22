@@ -111,7 +111,7 @@ Defender for Cloud provides built-in sensitive info types (SITs) from Microsoft 
 ### Create a custom sensitive info type
 
 1. Navigate to **Data classification > Classifiers > Sensitive info types**.
-    - In case of the new Microsoft Purview portal, this can be found in the **Information Protection** blade.
+   - In case of the new Microsoft Purview portal, this can be found in the **Information Protection** blade.
 
       ![Custom SIT creation 1](../Images/customsit1.png?raw=true)
 
@@ -135,7 +135,7 @@ Defender for Cloud provides built-in sensitive info types (SITs) from Microsoft 
 10. Leave **High confidence level** selected in the next step.
 11. On the Finish page review the settings and save the new Custom SIT by selecting the **Create** button.
 
-    ![Custom SIT creation 5](../Images/customsit5.png?raw=true)
+   ![Custom SIT creation 5](../Images/customsit5.png?raw=true)
 
 You can now select your Custom SIT from the **Custom** category in the **Data sensitivity** settings described in **Excercise 3**. Create and upload a document which will include the phrase *"data security posture management"* to test your Custom SIT.
 
@@ -184,10 +184,10 @@ Create a new storage account based on the instructions in [Module 19](https://gi
 
 ### (Optional) Upload data to Azure SQL database
 
-In [Module 1](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module-1-Preparing-the-Environment.md), you created an Azure SQL database, *asclab-db*. In this exercise, we will connect to the database and upload sensitive information.
+In [Module 1](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module-1-Preparing-the-Environment.md), you created an Azure SQL database, *mdclab-db*. In this exercise, we will connect to the database and upload sensitive information.
 
 1. Follow instructions [on this page](https://learn.microsoft.com/en-us/sql/relational-databases/import-export/import-data-from-excel-to-sql?view=sql-server-ver16) to upload the .xlsx file into the database created as part of **Module 1**. We recommend to use Microsoft SQL Management Studio for the import (SMSS) with the following steps.
-2. In SMSS, select the **asclab-db** database and choose **Import Data** via **Tasks**.
+2. In SMSS, select the **mdclab-db** database and choose **Import Data** via **Tasks**.
 
    ![SMSS import data 1](../Images/smssimportdata1.png?raw=true)
 
@@ -306,16 +306,16 @@ When sensitive data discovery is enabled in the Defender for Storage plan, you c
 1. In Defender for Cloud, open **Data security**.
 Check the following tiles and look for unusual data:
 
-    ![Data security dashboard 1](../Images/datasecuritydashboard1.png?raw=true)
+   ![Data security dashboard 1](../Images/datasecuritydashboard1.png?raw=true)
 
 - **Data resources requiring attention** - displays the number of sensitive resources that have either high severity security alerts or attack paths. Click on **high severity alerts** or **attack paths** to further drill down on the findings.
   - **Data resources with high severity alerts** - summarizes the active threats to sensitive data resources and which data types are at risk.
 
-     ![Data security dashboard 2](../Images/datasecuritydashboard2.png?raw=true)
+   ![Data security dashboard 2](../Images/datasecuritydashboard2.png?raw=true)
 
   - **Data resources with critical and high attack paths** - summarizes the potential threats to sensitive data resources by presenting attack paths leading to sensitive data resources and which data types are at potential risk.
 
-     ![Data security dashboard 3](../Images/datasecuritydashboard3.png?raw=true)
+   ![Data security dashboard 3](../Images/datasecuritydashboard3.png?raw=true)
 
 - **Data queries in security explorer** - presents the top data-related queries in security explorer that helps focus on multicloud risks to sensitive data. Click on **View** to narrow down the specific query.
 
@@ -328,3 +328,5 @@ Check the following tiles and look for unusual data:
 - **Internet-exposed data resources** - summarizes the discovery of sensitive data resources that are internet-exposed for storage and managed databases. Click on **View all data resources exposed to the internet** to run a query in Cloud security explorer.
 
    ![Data security dashboard 6](../Images/datasecuritydashboard6.png?raw=true)
+
+### Continue with the next lab [Module 24 - AI Workloads](../Modules/Module-24-AI-Workloads.md)

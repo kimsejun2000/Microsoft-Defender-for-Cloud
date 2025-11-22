@@ -12,9 +12,9 @@ This exercise guides you on how to connect and protect AWS projects using Defend
 
 First you need to create an AWS account project. 
 
-1.	Navigate to [Create free AWS](https://portal.aws.amazon.com/billing/signup?refid=em_127222&redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start/email)  
-2.  Click **Create a free account**.
-3.  Follow the guidance in AWS to create a free account.
+1. Navigate to [Create free AWS](https://portal.aws.amazon.com/billing/signup?refid=em_127222&redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start/email)  
+2. Click **Create a free account**.
+3. Follow the guidance in AWS to create a free account.
 
  ![Create free AWS account](../Images/create-free-aws.png?raw=true)
 
@@ -67,3 +67,4 @@ Now, you have successfully onboarded AWS to Microsoft Defender for Cloud, you'll
 
 If you have existing AWS resources, then you'll be able to see recommendations associated with them.
 
+### Continue with the next lab: [Module 12 - Microsoft Defender for Cloud database protection](../Modules/Module-12-MDC-database-protection.md)

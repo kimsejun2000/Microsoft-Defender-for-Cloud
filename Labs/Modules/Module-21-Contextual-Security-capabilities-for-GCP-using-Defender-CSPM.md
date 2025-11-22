@@ -1,4 +1,4 @@
-# Module 21 – Contextual Security capabilities for GCP using Defender CSPM  
+# Module 21 – Contextual Security capabilities for GCP using Defender CSPM
 
 <p align="left"><img src="../Images/asc-labs-intermediate.gif?raw=true"></p>
 
@@ -39,7 +39,7 @@ To enable Defender CSPM on already onboarded GCP projects or organizations, perf
 7.	Choose a deployment method: **GCP Cloud shell** or **Terraform** and **Copy** or **Download** the Script/Template. 
 8. If you selected GCP Cloud shell as a deployment method, log in to GCP Cloud Shell, paste the script into the Cloud Shell terminal and run it.
     ![GCP console with Cloud Shell](../Images/7gcpconsole.png?raw=true)
-9. Let the script run and after it finishes successfully return to Defender for Cloud. 
+9. Let the script run and after it finishes successfully return to Defender for Cloud.
 10. Select **I ran the deployment template for the changes to take effect** and click **Next: Review and generate**.
 11. Click **Update**
 
@@ -49,9 +49,9 @@ To enable Defender CSPM on already onboarded GCP projects or organizations, perf
 2.	From **Defender for Cloud**'s menu, elect open the **Attack Path Analysis** page.
 3.	To filter for attack paths related to GCP only, click **Add filter**, select **Environment**, then choose **GCP** and click **Apply**.
 4.	You will find the Attack Paths in your GCP Environment. Select a particulat attack path to investigate it further, like **”Publicly accessible GCP storage bucket with sensitive data (Preview)”**
-   
+
    ![image](../Images/module21AttackPathsGCP.png?raw=true)
-  	
+
 4.	You can observe the risk involved is **Internet Exposure** and **Sensitive Data**. Click the GCP storage bucket to drill down to the sensitive data stored in the storage bucket.
 
 5.	The **Insights** tab provides the detailed insights of the Attack path. You can drill down further on **Insights - Contains Sensitive Data**, to check what files contains sensitive data and Sensitive Info Types.
@@ -69,10 +69,10 @@ The Cloud Security Explorer allows you to proactively identify risk in your GCP 
    ![image](../Images/module21CloudSecurityExplorerCondition.png?raw=true)
    ![image](../Images/module21CloudSecurityExplorerContains.png?raw=true)
 
-3.	In the list of results, you can select a particular GCP Compute Instance and drill down further to observe the Insights. 
+3.	In the list of results, you can select a particular GCP Compute Instance and drill down further to observe the Insights.
 
 ## Clean up GCP Resources
 
 To clean up the resources created by Defender CSPM in the GCP environment, log in to GCP Cloud Shell and delete the relevant resources, like the policies/role bindings created by Defender for Cloud during the enablement of Defender CSPM. To validate the names of the GCP resources you need to delete, you start by analyzing the deployment method you used to enable Defender CSPM, like in this module the GCP Cloud Shell which contains the names of the GCP resources that Defender for Cloud creates for Defender CSPM.
 
-
+### Continue with the next lab [Module 22 – Integration with Microsoft Defender for Endpoint](../Modules/Module-22-MDE-integration.md)

@@ -53,4 +53,6 @@ As soon as Microsoft Defender Vulnerability Management (MDVM) will report vulner
 
 The workbook will show vulnerability assessment results based on CVE IDs, including information about affected machines and software. You can also filter by using the plain text search bar on top of every table.
 
-![](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Workbooks/CVE%20Dashboard/tab1.png)
+![](../../Workbooks/CVE%20Dashboard/tab1.png)
+
+### Continue with the next lab [Module 23 - Data security posture management](../Modules/Module-23-Data-security-posture-management.md)

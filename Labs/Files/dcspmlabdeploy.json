@@ -6,6 +6,7 @@
         // parmaters for Windows Server Name
         "winServerName": {
             "type": "string",
+            "defaultValue": "dcspmlab-winsrv",
             "metadata": {
                 "description": "Name for the Windows Server Virtual Machine."
             }
@@ -31,6 +32,7 @@
         // parmaters for Linux Server Name
         "linuxServerName": {
             "type": "string",
+            "defaultValue": "dcspmlab-nix",
             "metadata": {
                 "description": "Name for the Linux Server Virtual Machine."
             }
@@ -38,6 +40,7 @@
         //parmeters for user name
         "adminUsername": {
             "type": "string",
+            "defaultValue": "ascadmin",
             "metadata": {
                 "description": "User name for the Virtual Machine."
             }
@@ -49,10 +52,28 @@
                 "description": "Password for the Virtual Machine."
             }
         },
+        "vmSize": {
+            "defaultValue": "Standard_D2s_v5",
+            "allowedValues": [
+                "Standard_B1ms",
+                "Standard_B2ls_v2",
+                "Standard_D2s_v3",
+                "Standard_D4s_v3",
+                "Standard_D2s_v4",
+                "Standard_D4s_v4",
+                "Standard_D2s_v5",
+                "Standard_D4s_v5",
+                "Standard_D2ls_v6",
+                "Standard_D2s_v6",
+                "Standard_D4ls_v6",
+                "Standard_D4s_v6"
+            ],
+            "type": "string"
+        },
         // parameters for virtual network name
         "virtualNetworkName": {
             "type": "string",
-            "defaultValue": "asclab-vnet",
+            "defaultValue": "mdclab-vnet",
             "metadata": {
                 "description": "This needs to be the same name as the vNet you used in the previous deploymnet. Open the Resource Group hosting Lab environment and copy the vNet Name"
             }
@@ -80,8 +101,8 @@
         }
     },
     "variables": {
-        "linuxVmTemplateLink": "https://raw.githubusercontent.com/Azure/Microsoft-Defender-for-Cloud/main/Labs/Files/nested/nested-linux-vm.json",
-        "windowsVmTemplateLink": "https://raw.githubusercontent.com/Azure/Microsoft-Defender-for-Cloud/main/Labs/Files/nested/nested-windows-vm.json"
+        "linuxVmTemplateLink": "https://raw.githubusercontent.com/kimsejun2000/Microsoft-Defender-for-Cloud/refs/heads/main/Labs/Files/nested/nested-linux-vm.json",
+        "windowsVmTemplateLink": "https://raw.githubusercontent.com/kimsejun2000/Microsoft-Defender-for-Cloud/refs/heads/main/Labs/Files/nested/nested-windows-vm.json"
     },
     "resources": [
         {
@@ -98,6 +119,7 @@
                     "linuxServerName": { "value": "[parameters('linuxServerName')]" },
                     "adminUsername": { "value": "[parameters('adminUsername')]" },
                     "adminPassword": {"value": "[parameters('adminPassword')]"},
+                    "vmSize": {"value": "[parameters('vmSize')]"},
                     "virtualNetworkName": {"value": "[parameters('virtualNetworkName')]"},
                     "storageAccountName": {"value": "[parameters('storageAccountName')]"},
                     "keyVaultName": {"value": "[parameters('keyVaultName')]"},
@@ -121,6 +143,7 @@
                     "azureWinImageVersion": { "value": "[parameters('azureWinImageVersion')]" },
                     "adminUsername": { "value": "[parameters('adminUsername')]" },
                     "adminPassword": {"value": "[parameters('adminPassword')]"},
+                    "vmSize": {"value": "[parameters('vmSize')]"},
                     "virtualNetworkName": {"value": "[parameters('virtualNetworkName')]"},
                     "storageAccountName": {"value": "[parameters('storageAccountName')]"},
                     "keyVaultName": {"value": "[parameters('keyVaultName')]"},

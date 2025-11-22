@@ -12,19 +12,18 @@ This exercise guides you on how to connect and protect GCP projects using Defend
 
 First you need to create a GCP project. 
 
-1.	Navigate to [Create free GCP](https://cloud.google.com/free).  
+1. Navigate to [Create free GCP](https://cloud.google.com/free).  
 ![Docker Version in Powershell](../Images/1gcpintro.png?raw=true) 
-2.  Click **Get started for free**.
-3.  Now select either an existing Google account or create a new one. 
-4.  Follow the on-screen instructions to create the GCP project.
-5.  At the end, you should be able to sign in to the [Google Cloud Console](https://console.cloud.google.com), and see the Dashboard:
+2. Click **Get started for free**.
+3. Now select either an existing Google account or create a new one. 
+4. Follow the on-screen instructions to create the GCP project.
+5. At the end, you should be able to sign in to the [Google Cloud Console](https://console.cloud.google.com), and see the Dashboard:
 ![GCP console](../Images/2gcpconsole.png?raw=true)
 6. Copy the project number and project ID, and keep them safe, as you'll be using them in the next exercise.
 
 ### Exercise 2: Create the GCP connector in Microsoft Defender for Cloud
 
 In order to be able to protect your GCP resources in Microsoft Defender for Cloud, you need to create the GCP connector in Microsoft Defender for Cloud, which you will do in the following exercise. 
-
 
 1. Go to the Azure Portal and open **Microsoft Defender for Cloud**. 
 2. Go to **Environment Settings** in the left-hand tab.
@@ -36,7 +35,7 @@ In order to be able to protect your GCP resources in Microsoft Defender for Clou
 
 **Connector Name**: select a new name
 
-**Onboard**: Single project 
+**Onboard**: Single project
 
 **Subscription**: Choose your existing subscription
 
@@ -50,10 +49,10 @@ In order to be able to protect your GCP resources in Microsoft Defender for Clou
 
 ![Create GCP connector](../Images/4creategcpconnector.png?raw=true)
 
-5.  After filling everything in, click **Next: Select plans**.
+5. After filling everything in, click **Next: Select plans**.
 6. In **Select plans**, the Foundational CSPM plan is enabled by default.
 
-7. Ensure that the Defender CSPM, Servers, Containers and Database plans are set to **On**. 
+7. Ensure that the Defender CSPM, Servers, Containers and Database plans are set to **On**.
 
 ![GCP plans](../Images/5gcpplans.png?raw=true)
 
@@ -74,7 +73,7 @@ For the Management project details, you can either create a new one automaticall
 
 ![GCP console with Cloud Shell](../Images/7gcpconsole.png?raw=true)
 
-13. Let the script run and after it finishes successfully return to Defender for Cloud. 
+13. Let the script run and after it finishes successfully return to Defender for Cloud.
 
 14. Back in the **Configure access** page click **Next: review and Generate**.
 
@@ -84,7 +83,7 @@ Now, you have successfully created a GCP connector in Microsoft Defender for Clo
 
 ### Exercise 3: Investigate the GCP recommendations 
 
-Once a vulnerable image has been pushed to the Azure Container Registry registry, then Microsoft Defender for Containers will start scanning the image for vulnerabilities. You will now look into the recommendations in Microsoft Defender for Cloud for this. 
+Once a vulnerable image has been pushed to the Azure Container Registry registry, then Microsoft Defender for Containers will start scanning the image for vulnerabilities. You will now look into the recommendations in Microsoft Defender for Cloud for this.
 
 > [!NOTE]
 > You will need to create some GCP resources in order to see recommendations for GCP in Microsoft Defender for Cloud.
@@ -96,3 +95,5 @@ Once a vulnerable image has been pushed to the Azure Container Registry registry
 ![GCP console with Cloud Shell](../Images/8gcprecommendations.png?raw=true)
 
 If you have existing GCP resources, then you'll be able to see recommendations associated with them.
+
+### Continue with the next lab: [Module 11 - Connecting an AWS project](../Modules/Module-11-AWS.md)

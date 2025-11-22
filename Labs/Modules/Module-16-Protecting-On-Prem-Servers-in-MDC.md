@@ -14,13 +14,12 @@ Liana Tomescu [Github](https://github.com/LianaT), [Linkedin](https://www.linked
 In this exercise, you will learn how to deploy an server on your personal client machine using Hyper-V (which will act as the "on-premise server"), and then deploy Azure Arc on it in order to protect it using Microsoft Defender for Cloud.
 
 ## Prerequisites
-For server protection of on-premises machines, Defender for Servers (Plan 1, or Plan 2) needs to be enabled. To enable the plan, follow the instruction in [Exercise 1 of module 8](./Module-8-Advance-Cloud-Defense.md#exercise-1-enable-microsoft-defender-for-servers-plan-2).
+For server protection of on-premises machines, Defender for Servers (Plan 1, or Plan 2) needs to be enabled. To enable the plan, follow the instruction in [Exercise 1 of module 8](../Modules/Module-08-Enhanced-Security.md#exercise-1-enable-microsoft-defender-for-servers-plan-2).
 
 ## Exercise 1: Install Hyper-V which will be used to create the server on your own machine
 
 Pre-requisites: Windows 10/11
 Windows 10 Hyper-V System. The guidance also works for Windows 11, see more [here](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements))  
-
 
 1.  Go to your desktop, and in your Settings, search for Hyper-V
 ![Settings](../Images/settings-desktop.png?raw=true)
@@ -30,7 +29,7 @@ Windows 10 Hyper-V System. The guidance also works for Windows 11, see more [her
 4. You will need to re-start your PC to let the changes take effect.
 5. Search for **Hyper-V** in the Windows search bar and open it.
 6. Download an ISO image which will install an operating system, such as Windows Server 2022, by going [here](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022).
-Select the image most suitable to your PC environment and download it (Note: This process may take a few minutes). 
+Select the image most suitable to your PC environment and download it (Note: This process may take a few minutes).
 
 Take note of where this ISO downloaded, as you'll need it later.
 
@@ -40,7 +39,7 @@ The guidance in the remainder of this module is based on the Windows Server 2022
 ---------------------------------------
 ## Exercise 2: Using Hyper-V, confirm that there's a virtual switch already installed on your desktop.  
 
-1.	Open up **Hyper-V** by searching for it. 
+1. Open up **Hyper-V** by searching for it.
 2. Select your desktop in the Hyper-V Manager in the left-hand side.
 
 ![Select Hyper-V desktop](../Images/hypervdesktop.png?raw=true)
@@ -77,7 +76,7 @@ Untick **Use dynamic memory for this VM.** and hit **next**.
 
 ![Installation Options](../Images/installationoptions.png?raw=true)
 
-9. Under the Summary, click **Finish**. 
+9. Under the Summary, click **Finish**.
 
 Now you have created your VM!
 
@@ -91,13 +90,13 @@ Now you have created your VM!
 
 ![connect to arc server](../Images/connectarcserver.png?raw=true)
 
-3. In the Virtual machine Connection pop-up that appears, click **Start**. 
+3. In the Virtual machine Connection pop-up that appears, click **Start**.
 
 ![start arc server](../Images/startvm.png?raw=true)
 
 4. Now press any key on the keyboard such as the space bar, and wait for roughly one minute.
 
-Note: If the following screen appears, then select **restart now**. 
+Note: If the following screen appears, then select **restart now**.
 
 Alternatively, click on the start button, as shown below.
 
@@ -111,7 +110,7 @@ If this fails, keep re-trying this process, until it passes.
 
 ![start arc server](../Images/ossetupdefaults.png?raw=true)
 
-6. Click **Install now**. 
+6. Click **Install now**.
 
 ![start arc server](../Images/installosnow.png?raw=true)
 
@@ -119,7 +118,7 @@ If this fails, keep re-trying this process, until it passes.
 
 ![start arc server](../Images/standarddesktopexperience.png?raw=true)
 
-7. Accept the **Terms and Conidtions**. 
+7. Accept the **Terms and Conidtions**.
 
 ![start arc server](../Images/termsandconditions.png?raw=true)
 
@@ -135,7 +134,7 @@ If this fails, keep re-trying this process, until it passes.
 
 ![start arc server](../Images/installingos.png?raw=true)
 
-## Exercise 5: Setup the Azure Arc RP. 
+## Exercise 5: Setup the Azure Arc RP.
 
 1. Go to the [Azure portal](portal.azure.com).
 2. Open up the **Azure cloud shell** by selecting theicon to the right of the search bar. 
@@ -226,12 +225,11 @@ Note: for the connectivity method, select what’s most appropriate for your env
 
 ![Arc](../Images/powershelladmin.png?raw=true)
 
-
 11. Now that Powershell is open, Create a new file, and paste the Arc script (that we copied earlier) directly into this file, and then press run.
 
 12. As the script runs, the VM's default browser should appear asking you to authenticate into your Azure subscription (where we will be connecting this server to). Sign in to your Azure subscription.
 
-13. Once script has completed, the Azure Arc agent has been deployed and configured onto the server. 
+13. Once script has completed, the Azure Arc agent has been deployed and configured onto the server.
 
 This means that your Azure subscription, will be able to detect this server after approximately 24 hours. This VM will act as an on-premises server in Azure, and it will be protected by Microsoft Defender for Cloud.
 
@@ -246,9 +244,6 @@ This means that your Azure subscription, will be able to detect this server afte
 3. You will need to wait for approximately 24 hours after installing the Arc agent on the VM before the VM appears in Microsoft Defender for Cloud.
 
 ![Inventory in MDC](../Images/mdcinventory.png?raw=true)
-
-
-
 
 4. From Inventory, click into the server name to open up **Resource Health** about that server. Then in the Resource Health, click again on the server name on the top-left hand corner. This will bring you to the Arc resource.
 
@@ -266,12 +261,8 @@ Note: You should install the log analytics agent/ Azure Monitor Agent on the mac
 
 ! Please be aware that the Log Analytics agent is on a deprecation path and won't be supported after August 31, 2024. If you use the Log Analytics agent to ingest data to Azure Monitor, [migrate to the new Azure Monitor agent](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-migration) prior to that date. 
 
-
 ### Now you have successfully onboarded a server outside of Azure to Microsoft Defender for Cloud by using Azure Arc.
 <br />
-
-
-
 
 ### A possible next step to get more familiar with Azure Arc is to follow the guidance in the micro-hack [here](https://github.com/microsoft/MicroHack/tree/main/03-Azure/01-03-Infrastructure/02_Hybrid_Azure_Arc_Servers).
 <br />
@@ -280,3 +271,5 @@ Note: You should install the log analytics agent/ Azure Monitor Agent on the mac
 [Best practise configuration management for Azure Arc enabled servers](https://learn.microsoft.com/en-us/azure/architecture/hybrid/azure-arc-hybrid-config)
 
 [Azure automanage for Arc-enabled servers](https://learn.microsoft.com/en-us/azure/automanage/automanage-arc)
+
+### Continue with the next lab [Module 17 – Defender CSPM](../Modules/Module-17-Defender-CSPM.md)

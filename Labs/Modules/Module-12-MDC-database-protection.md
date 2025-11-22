@@ -35,16 +35,9 @@ Now all your existing and upcoming Azure SQL servers on machines are protected.
 
 First use the ARM template to create a SQL server on a Windows Virtual Machine [here](https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-vm-create-portal-quickstart?view=azuresql&tabs=conventional-vm).
 
-1. To deploy, click on the blue **Deploy to Azure** button below:
-
-    [![BlueAzurebutton][def]](<https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.sqlvirtualmachine%2Fsql-vm-new-storage%2Fazuredeploy.json>) 
-
+1. To Deploy **SQL Server 2019 on Windows Server 2022** by clicking New in the Azure portal.
 3. Click **Review and Create** and then when it's ready, click **Create**.
-
-    ![SQLVMtemplate](../Images/module12_sqlvmtemplate_yl.png)
-
 4. Once created, make sure **Defender for SQL on machines** plan is enabled.
-
 5. Navigate to the virtual machine. Click on **Extensions + applications**. Notice three extensions: `MicrosoftDefenderforSQL` and `SqlIaasExtension`.
 
 #### View vulnerability assessments
@@ -64,7 +57,7 @@ Vulernerability assessment findings come from a knowledge base of best practices
 
 #### Enable database protection on your Azure SQL Database
 
-A SQL server should also have been created, earlier in module 1, and it should be labeled as “asclab-sql-[string]”. If so, you should also be able to locate your SQL databased, labeled as “asclab-db”.
+A SQL server should also have been created, earlier in module 1, and it should be labeled as “mdclab-sql-[string]”. If so, you should also be able to locate your SQL databased, labeled as “mdclab-db”.
 
 1. Sign into the **Azure portal**.
 2. Navigate to **Microsoft Defender for Cloud**, then **Environment settings**.
@@ -74,14 +67,14 @@ A SQL server should also have been created, earlier in module 1, and it should b
 6. Make sure **Azure SQL Database** has been toggled to **On**.
 7. Select **Continue** and **Save**.
 
-Now all your existing (asclab-db from Module 1) and upcoming Azure SQL Databases are protected.
+Now all your existing (mdclab-db from Module 1) and upcoming Azure SQL Databases are protected.
 
 #### Understand vulnerability assessment on your Azure SQL Database
 
-This part of the exercise will leverage "asclab-db".
+This part of the exercise will leverage "mdclab-db".
 
 1. Sign into the **Azure portal**.
-2. Navigate to the SQL server or to database directly by searching **“asclab-db”**.
+2. Navigate to the SQL server or to database directly by searching **“mdclab-db”**.
 3. Click on **Microsoft Defender for Cloud** under **Security**.
 4. **Recommendations** and **Vulnerability assessment findings** should be available.
 ![Azure SQL Database findings](../Images/12sqldatabaseRecsVAFindings-yl.png)
@@ -113,52 +106,49 @@ Defender for Cloud protects PostgreSQL, MySQL flexible servers and MariaDB.
 #### Understand AWS RDS protection
 
 Defender for Cloud now extends its protection to AWS RDS. See this announcement here: [Microsoft Defender for Open-Source Relational Databases Now Supports Multicloud (AWS RDS)](https://techcommunity.microsoft.com/blog/microsoftdefendercloudblog/microsoft-defender-for-open-source-relational-databases-now-supports-multicloud-/4127655).
-In addition to the advance threat protection capabilities for AWS RDS, Defender for open-source relational databases also bundles sensitive data discovery as part of its core value. 
-Refer to Module 11 to familiarize yourself with the AWS connector in MDC. 
+In addition to the advance threat protection capabilities for AWS RDS, Defender for open-source relational databases also bundles sensitive data discovery as part of its core value.
+Refer to Module 11 to familiarize yourself with the AWS connector in MDC.
 
 ##### Enable and protect your AWS RDSs using Microsoft Defender for Open-source relational database plan:
 
-1.	Sign into the Azure portal.
-2.	Navigate to Microsoft Defender for Cloud, then Environment settings.
-3.	Select the relevant AWS Connector.
-4.	Navigate to Databases and then select Settings
-5.	Expand list next to Open-source relational databases (preview)
-6.	Toggle on Open-source relational databases (preview)
-7.	Toggle on Sensitive data discovery 
-    >Notice SQL Servers on machines – Defender for SQL protects SQL machines outside of Azure, including AWS. Azure Arc must be installed on those machines. 
-8.	Click Save.
+1. Sign into the Azure portal.
+2. Navigate to Microsoft Defender for Cloud, then Environment settings.
+3. Select the relevant AWS Connector.
+4. Navigate to Databases and then select Settings
+5. Expand list next to Open-source relational databases (preview)
+6. Toggle on Open-source relational databases (preview)
+7. Toggle on Sensitive data discovery
+    >Notice SQL Servers on machines – Defender for SQL protects SQL machines outside of Azure, including AWS. Azure Arc must be installed on those machines.
+8. Click Save.
 
 ##### Create an RDS instance with sensitive information
-1.	Sign into your AWS portal and create one of the supported RDS resources. 
-2.	Upload sensitive data into the just created RDS database
-    >Refer to [Module 23, exercise 5 for guidance](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module%2023%20-%20Data%20security%20posture%20management.md?plain=1) or [AWS doc](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.AnySource.html) for assistance. 
-3.	Wait 24 hours
+1. Sign into your AWS portal and create one of the supported RDS resources. 
+2. Upload sensitive data into the just created RDS database
+    >Refer to [Module 23, exercise 5 for guidance](../Modules/Module-23-Data-security-posture-management.md#exercise-5-upload-sensitive-data) or [AWS doc](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.AnySource.html) for assistance. 
+3. Wait 24 hours
 
 ##### Look for enriched findings in Cloud Security Explorer:
-1.	Navigate to Cloud Security Explorer in Defender for Cloud 
-2.	Under “Select resource types”, choose “Managed database (PaaS)” then “AWS RDS DB instances
-3.	Click “+” to add another condition
-4.	For “Select condition”, choose “Data” and then “Contains sensitive data”
-5.	Click **Search**
-6.	Your AWS RDS DB should populate in the Results section. 
+
+1. Navigate to Cloud Security Explorer in Defender for Cloud 
+2. Under “Select resource types”, choose “Managed database (PaaS)” then “AWS RDS DB instances
+3. Click “+” to add another condition
+4. For “Select condition”, choose “Data” and then “Contains sensitive data”
+5. Click **Search**
+6. Your AWS RDS DB should populate in the Results section. 
 
 Other places to look for findings:
- - **Alerts**: filter alerts by resources with sensitive data discovery findings
- - **Inventory**: filter RDS resources with sensitive data discovery findings
- - **Resource health**: enrichment with sensitive data discovery findings
- - **Attack path**: identify potential attack paths for RDS with sensitive data discovery findings
+    - **Alerts**: filter alerts by resources with sensitive data discovery findings
+    - **Inventory**: filter RDS resources with sensitive data discovery findings
+    - **Resource health**: enrichment with sensitive data discovery findings
+    - **Attack path**: identify potential attack paths for RDS with sensitive data discovery findings
 
 ### Exercise 4: Explore Defender for Azure Cosmos DB
 
 First use the ARM template to create an Azure Cosmos DB or follow the instructions [here](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/quickstart-portal).
 
-1. To deploy, click on the blue **Deploy to Azure** button below:
-
-    [![BlueAzurebutton][def]](<https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.documentdb%2Fcosmosdb-sql-autoscale%2Fazuredeploy.json" target="_blank">)
-
-2. Click **Deploy to Azure**.
-3. Fill in all the necessary fields.
-4. Click **Review and Create** and then when it's ready, click
+1. To deploy **Cosmos DB** by clicking New in the Azure portal.
+2. Fill in all the necessary fields.
+3. Click **Review and Create** and then when it's ready, click
 **Create**.
 
 #### Enable database protection on your CosmosDB
@@ -179,7 +169,6 @@ Now all your existing and upcoming Azure Cosmos DB accounts are protected.
 ![Cosmos DB MDC page](../Images/12cosmosdbRecsAlerts.png)
 4. **Recommendations** and **Security incidents and alerts** should be available, if applicable.
 
-### Continue with the next lab [Module 13: Defender for APIs](https://github.com/Azure/Microsoft-Defender-for-Cloud/blob/main/Labs/Modules/Module-13-Defender%20for%20APIs.md)
+### Continue with the next lab [Module 13: Defender for APIs](../Modules/Module-13-Defender-for-APIs.md)
 
 [def]: https://aka.ms/deploytoazurebutton/
-
