@@ -40,7 +40,7 @@
         //parmeters for user name
         "adminUsername": {
             "type": "string",
-            "defaultValue": "ascadmin",
+            "defaultValue": "mdcadmin",
             "metadata": {
                 "description": "User name for the Virtual Machine."
             }

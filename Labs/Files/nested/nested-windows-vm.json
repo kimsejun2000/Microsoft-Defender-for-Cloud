@@ -97,7 +97,7 @@
         "osType": {
             "publisher": "MicrosoftWindowsServer",
             "offer": "WindowsServer",
-            "sku": "2025-datacenter-azure-edition",
+            "sku": "2019-datacenter-gensecond",
             "version": "[parameters('azureWinImageVersion')]",
             "osDiskName": "[concat(variables('vmName'), '-osdisk')]",
             "dataDiskName": "[concat(variables('vmName'), '-datadisk')]"

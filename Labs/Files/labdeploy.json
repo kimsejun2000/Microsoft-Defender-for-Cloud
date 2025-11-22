@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "username": {
-            "defaultValue": "ascadmin",
+            "defaultValue": "mdcadmin",
             "type": "string",
             "metadata": {
                 "description": "Provide administrative user account for resources"
@@ -48,7 +48,7 @@
         },
         "resourceTags": {
             "defaultValue": {
-                "Demo": "ASC",
+                "Demo": "MDC",
                 "ProvisionedBy": "CxE"
             },
             "type": "object"
